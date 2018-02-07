@@ -9,6 +9,7 @@ class NewWorld extends React.Component {
     return (
       <div>
         <h1>The NW is here</h1>
+        <p>{this.props.shoppingList.itemTwo}</p>
       </div>
     )
   }
