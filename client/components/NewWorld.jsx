@@ -2,7 +2,7 @@ import React from 'react'
 
 class NewWorld extends React.Component {
   constructor () {
-    super ()
+    super()
     this.state = {}
   }
   render () {
@@ -13,6 +13,5 @@ class NewWorld extends React.Component {
     )
   }
 }
-
 
 export default NewWorld
