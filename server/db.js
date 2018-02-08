@@ -19,7 +19,6 @@ const widgets = [{
 }]
 
 function getWidgets () {
-  console.log('inside')
   return widgets
 }
 

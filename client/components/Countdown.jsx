@@ -6,7 +6,7 @@ class Countdown extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      widgets: []
+      widgets: [{name: 'test'}]
     }
     this.getCountdown = this.getCountdown.bind(this)
     this.renderWidgets = this.renderWidgets.bind(this)
@@ -34,6 +34,12 @@ class Countdown extends React.Component {
     return (
       <div>
         <h1>The countdown is here</h1>
+        {this.state.widgets.map(widget => {
+          return (
+            this.props.shoppingList.itemOne === widget.name &&
+          <p key={widget.id}>{widget.name}</p>
+          )
+        })}
         <p>{this.props.shoppingList.itemOne}</p>
       </div>
     )

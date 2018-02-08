@@ -20706,7 +20706,9 @@ var App = function (_React$Component) {
             null,
             'The app is here'
           ),
-          _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _List2.default }),
+          _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', render: function render() {
+              return _react2.default.createElement(_List2.default, { addItem: _this2.addItem });
+            } }),
           _react2.default.createElement(_reactRouterDom.Route, { path: '/compare', render: function render() {
               return _react2.default.createElement(_Compare2.default, { shoppingList: _this2.state });
             } })
@@ -20827,7 +20829,7 @@ var Countdown = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (Countdown.__proto__ || Object.getPrototypeOf(Countdown)).call(this, props));
 
     _this.state = {
-      widgets: []
+      widgets: [{ name: 'test' }]
     };
     _this.getCountdown = _this.getCountdown.bind(_this);
     _this.renderWidgets = _this.renderWidgets.bind(_this);
@@ -20858,6 +20860,8 @@ var Countdown = function (_React$Component) {
   }, {
     key: 'render',
     value: function render() {
+      var _this2 = this;
+
       return _react2.default.createElement(
         'div',
         null,
@@ -20866,6 +20870,13 @@ var Countdown = function (_React$Component) {
           null,
           'The countdown is here'
         ),
+        this.state.widgets.map(function (widget) {
+          return _this2.props.shoppingList.itemOne === widget.name && _react2.default.createElement(
+            'p',
+            { key: widget.id },
+            widget.name
+          );
+        }),
         _react2.default.createElement(
           'p',
           null,
@@ -22017,8 +22028,6 @@ var compareUrl = 'http://localhost:3000/api/v1/compare';
 
 function getWidgets(callback) {
   _superagent2.default.get(compareUrl).end(function (err, res) {
-    console.log(res);
-
     callback(err, res.body);
   });
 }
@@ -22106,6 +22115,8 @@ var _reactRouterDom = __webpack_require__(29);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -22120,11 +22131,19 @@ var List = function (_React$Component) {
 
     var _this = _possibleConstructorReturn(this, (List.__proto__ || Object.getPrototypeOf(List)).call(this, props));
 
-    _this.state = {};
+    _this.state = {
+      test: 'test'
+    };
+    _this.addItem = _this.addItem.bind(_this);
     return _this;
   }
 
   _createClass(List, [{
+    key: 'addItem',
+    value: function addItem(evt) {
+      this.setState(_defineProperty({}, evt.target.name, evt.target.value));
+    }
+  }, {
     key: 'render',
     value: function render() {
       return _react2.default.createElement(
@@ -22133,19 +22152,19 @@ var List = function (_React$Component) {
         _react2.default.createElement(
           'form',
           null,
-          _react2.default.createElement('input', { name: 'itemOne', onChange: this.addItem }),
+          _react2.default.createElement('input', { name: 'itemOne', onChange: this.props.addItem }),
           ' ',
           _react2.default.createElement('br', null),
-          _react2.default.createElement('input', { name: 'itemTwo', onChange: this.addItem }),
+          _react2.default.createElement('input', { name: 'itemTwo', onChange: this.props.addItem }),
           ' ',
           _react2.default.createElement('br', null),
-          _react2.default.createElement('input', { name: 'itemThree', onChange: this.addItem }),
+          _react2.default.createElement('input', { name: 'itemThree', onChange: this.props.addItem }),
           ' ',
           _react2.default.createElement('br', null),
-          _react2.default.createElement('input', { name: 'itemFour', onChange: this.addItem }),
+          _react2.default.createElement('input', { name: 'itemFour', onChange: this.props.addItem }),
           ' ',
           _react2.default.createElement('br', null),
-          _react2.default.createElement('input', { name: 'itemFive', onChange: this.addItem }),
+          _react2.default.createElement('input', { name: 'itemFive', onChange: this.props.addItem }),
           ' ',
           _react2.default.createElement('br', null),
           _react2.default.createElement(
