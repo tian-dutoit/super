@@ -1,5 +1,4 @@
 import React from 'react'
-import request from 'superagent'
 import Compare from './Compare'
 import List from './List'
 import {HashRouter as Router, Route} from 'react-router-dom'
