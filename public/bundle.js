@@ -20832,10 +20832,6 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _superagent = __webpack_require__(27);
-
-var _superagent2 = _interopRequireDefault(_superagent);
-
 var _api = __webpack_require__(29);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -20896,6 +20892,14 @@ var Countdown = function (_React$Component) {
           null,
           'The countdown is here'
         ),
+        Object.values(this.props.shoppingList).map(function (item, id) {
+          // maps accross an array of shopping list items
+          return _react2.default.createElement(
+            'p',
+            { key: id },
+            item
+          );
+        }),
         this.state.widgets.map(function (widget) {
           return _this2.props.shoppingList.itemOne === widget.name && _react2.default.createElement(
             'p',

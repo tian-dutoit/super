@@ -1,5 +1,4 @@
 import React from 'react'
-import request from 'superagent'
 import {getWidgets} from '../api'
 
 class Countdown extends React.Component {
@@ -34,6 +33,13 @@ class Countdown extends React.Component {
     return (
       <div>
         <h1>The countdown is here</h1>
+        {Object.values(this.props.shoppingList).map((item, id) => { // maps accross an array of shopping list items
+          return (
+            <p key={id}>{item}</p>
+
+          )
+        })}
+
         {this.state.widgets.map(widget => {
           return (
             this.props.shoppingList.itemOne === widget.name &&
