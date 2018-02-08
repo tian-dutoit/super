@@ -1,8 +1,7 @@
 import React from 'react'
-import request from 'superagent'
 import Compare from './Compare'
 import List from './List'
-import {HashRouter as Router, Route} from 'react-router-dom'
+import {HashRouter as Router, Route, Link} from 'react-router-dom'
 
 class App extends React.Component {
   constructor () {
@@ -11,7 +10,6 @@ class App extends React.Component {
     }
     this.addItem = this.addItem.bind(this)
   }
-
   addItem (evt) {
     this.setState({
       [evt.target.name]: evt.target.value
@@ -23,7 +21,7 @@ class App extends React.Component {
       <Router>
         <div>
           <h1>The app is here</h1>
-          <Route exact path='/' component={List} />
+          <Route exact path='/' render={() => <List addItem={this.addItem} />} />
           <Route path='/compare' render={() => <Compare shoppingList={this.state}/> }/>
         </div>
       </Router>

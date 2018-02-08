@@ -7,6 +7,7 @@ class Compare extends React.Component {
     super(props)
     this.state = {}
   }
+
   render () {
     return (
       <div>
