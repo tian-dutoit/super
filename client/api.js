@@ -9,3 +9,11 @@ export function getWidgets (callback) {
       callback(err, res.body)
     })
 }
+
+export function postList (data, callback) {
+  request
+    .post(compareUrl)
+    .set('Content-Type', 'application/json')
+    .send(data)
+    .then(callback)
+}

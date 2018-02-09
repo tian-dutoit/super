@@ -16,6 +16,8 @@ class List extends React.Component {
     })
   }
 
+
+
   render () {
     return (
       <div>
@@ -25,7 +27,8 @@ class List extends React.Component {
           <input name="itemThree" onChange={this.props.addItem} /> <br/>
           <input name="itemFour" onChange={this.props.addItem} /> <br/>
           <input name="itemFive" onChange={this.props.addItem} /> <br/>
-          <Link to='/compare'> <input type = "button" value="Press Me"/></Link>
+          <button type = "button" onClick={this.props.handlePress}>Submit data"</button>
+          <Link to='/compare'> <input type = "button" value="Press me"/></Link>
         </form>
       </div>
     )

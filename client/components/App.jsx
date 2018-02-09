@@ -2,6 +2,8 @@ import React from 'react'
 import Compare from './Compare'
 import List from './List'
 import {HashRouter as Router, Route, Link} from 'react-router-dom'
+import {postList} from '../api'
+
 
 class App extends React.Component {
   constructor () {
@@ -9,6 +11,8 @@ class App extends React.Component {
     this.state = {
     }
     this.addItem = this.addItem.bind(this)
+    this.handlePress = this.handlePress.bind(this)
+
   }
   addItem (evt) {
     this.setState({
@@ -16,12 +20,16 @@ class App extends React.Component {
     })
   }
 
+  handlePress () {
+    postList(this.state)
+  }
+
   render () {
     return (
       <Router>
         <div>
           <h1>The app is here</h1>
-          <Route exact path='/' render={() => <List addItem={this.addItem} />} />
+          <Route exact path='/' render={() => <List addItem={this.addItem} handlePress={this.handlePress} />} />
           <Route path='/compare' render={() => <Compare shoppingList={this.state}/> }/>
         </div>
       </Router>
