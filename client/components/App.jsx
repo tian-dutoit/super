@@ -11,7 +11,8 @@ class App extends React.Component {
     this.state = {
     }
     this.addItem = this.addItem.bind(this)
-    this.handlePress = this.handlePress.bind(this)
+    // this.handlePress = this.handlePress.bind(this)
+    // this.renderList = this.renderList.bind(this)
 
   }
   addItem (evt) {
@@ -20,9 +21,15 @@ class App extends React.Component {
     })
   }
 
-  handlePress () {
-    postList(this.state)
-  }
+  // handlePress () {
+  //   postList(this.state, this.renderList)
+  // }
+  //
+  // renderList (countdownItems) {
+  //   this.setState({
+  //   countdown: countdownItems.body.shopping || {}
+  //   })
+  // }
 
   render () {
     return (

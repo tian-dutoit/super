@@ -19789,7 +19789,8 @@ var App = function (_React$Component) {
 
     _this.state = {};
     _this.addItem = _this.addItem.bind(_this);
-    _this.handlePress = _this.handlePress.bind(_this);
+    // this.handlePress = this.handlePress.bind(this)
+    // this.renderList = this.renderList.bind(this)
 
     return _this;
   }
@@ -19799,11 +19800,17 @@ var App = function (_React$Component) {
     value: function addItem(evt) {
       this.setState(_defineProperty({}, evt.target.name, evt.target.value));
     }
-  }, {
-    key: 'handlePress',
-    value: function handlePress() {
-      (0, _api.postList)(this.state);
-    }
+
+    // handlePress () {
+    //   postList(this.state, this.renderList)
+    // }
+    //
+    // renderList (countdownItems) {
+    //   this.setState({
+    //   countdown: countdownItems.body.shopping || {}
+    //   })
+    // }
+
   }, {
     key: 'render',
     value: function render() {
@@ -19884,6 +19891,8 @@ var Compare = function (_React$Component) {
   _createClass(Compare, [{
     key: 'render',
     value: function render() {
+      var interim = Object.values(this.props)[0];
+      var other = Object.values(interim);
       return _react2.default.createElement(
         'div',
         null,
@@ -19892,8 +19901,7 @@ var Compare = function (_React$Component) {
           null,
           'The Compare is here'
         ),
-        _react2.default.createElement(_Countdown2.default, { shoppingList: this.props.shoppingList }),
-        _react2.default.createElement(_NewWorld2.default, { shoppingList: this.props.shoppingList })
+        _react2.default.createElement(_Countdown2.default, { shoppingList: other })
       );
     }
   }]);
@@ -19939,39 +19947,69 @@ var Countdown = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (Countdown.__proto__ || Object.getPrototypeOf(Countdown)).call(this, props));
 
     _this.state = {
-      widgets: [{ name: 'test' }]
+      total: 0,
+      countdown: [{ name: 'test' }]
     };
-    _this.getCountdown = _this.getCountdown.bind(_this);
-    _this.renderWidgets = _this.renderWidgets.bind(_this);
+    _this.handlePress = _this.handlePress.bind(_this);
+    _this.renderList = _this.renderList.bind(_this);
+    _this.total = _this.total.bind(_this);
+    // this.getCountdown = this.getCountdown.bind(this)
+    // this.renderWidgets = this.renderWidgets.bind(this)
     return _this;
   }
+
+  // componentDidMount () {
+  //   this.getCountdown()
+  // }
+  //
+  // renderWidgets (err, widgets) {
+  //   this.setState({
+  //     error: err,
+  //     widgets: widgets || []
+  //   })
+  // }
+  //
+  // getCountdown (err) {
+  //   this.setState({
+  //     error: err
+  //   })
+  //   getWidgets(this.renderWidgets)
+  // }
+
 
   _createClass(Countdown, [{
     key: 'componentDidMount',
     value: function componentDidMount() {
-      this.getCountdown();
+      this.handlePress(this.props);
     }
   }, {
-    key: 'renderWidgets',
-    value: function renderWidgets(err, widgets) {
-      this.setState({
-        error: err,
-        widgets: widgets || []
-      });
+    key: 'handlePress',
+    value: function handlePress(list) {
+      (0, _api.postList)(list, this.renderList);
     }
   }, {
-    key: 'getCountdown',
-    value: function getCountdown(err) {
+    key: 'renderList',
+    value: function renderList(countdownItems) {
       this.setState({
-        error: err
+        countdown: countdownItems.body.shopping || {}
       });
-      (0, _api.getWidgets)(this.renderWidgets);
+      this.total();
+    }
+  }, {
+    key: 'total',
+    value: function total() {
+      var count = 0;
+      for (var i = 0; i < this.state.countdown.length; i++) {
+        count += this.state.countdown[i].price;
+      }
+      console.log(count);
+      this.setState({
+        total: count
+      });
     }
   }, {
     key: 'render',
     value: function render() {
-      var _this2 = this;
-
       return _react2.default.createElement(
         'div',
         null,
@@ -19980,25 +20018,28 @@ var Countdown = function (_React$Component) {
           null,
           'The countdown is here'
         ),
-        Object.values(this.props.shoppingList).map(function (item, id) {
-          // maps accross an array of shopping list items
+        this.state.countdown.map(function (item, id) {
           return _react2.default.createElement(
-            'p',
+            'div',
             { key: id },
-            item
-          );
-        }),
-        this.state.widgets.map(function (widget) {
-          return _this2.props.shoppingList.itemOne === widget.name && _react2.default.createElement(
-            'p',
-            { key: widget.id },
-            widget.name
+            _react2.default.createElement(
+              'p',
+              null,
+              item.product,
+              ' $',
+              item.price
+            )
           );
         }),
         _react2.default.createElement(
           'p',
           null,
-          this.props.shoppingList.itemOne
+          _react2.default.createElement(
+            'strong',
+            null,
+            'Total: $',
+            this.state.total
+          )
         )
       );
     }
@@ -22225,7 +22266,7 @@ var List = function (_React$Component) {
           _react2.default.createElement(
             'button',
             { type: 'button', onClick: this.props.handlePress },
-            'Submit data"'
+            'Submit data'
           ),
           _react2.default.createElement(
             _reactRouterDom.Link,
