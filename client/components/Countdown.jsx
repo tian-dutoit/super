@@ -54,7 +54,7 @@ class Countdown extends React.Component {
   total () {
     let count = 0
     for(let i = 0; i< this.state.countdown.length; i++) {
-      count += this.state.countdown[i].price
+      count += this.state.countdown[i].cdPrice
     }
     console.log(count)
     this.setState({
@@ -70,7 +70,7 @@ class Countdown extends React.Component {
         {this.state.countdown.map((item, id) => {
           return (
             <div key={id}>
-            <p>{item.product} ${item.price}</p>
+            <p>{item.product} ${item.cdPrice}</p>
           </div>
           )
         })}

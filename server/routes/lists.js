@@ -12,17 +12,30 @@ router.get('/', function (req, res) {
   res.send(dataArr)
 })
 
+// router.post('/', function (req, res) {
+//   const shopListObj = req.body
+//   const shopListArr = Object.values(shopListObj)[0]
+//   knex('countdown')
+//     .whereIn('product', shopListArr)
+//     .then(function (countdown) {
+//       const countdownItems = { shopping: countdown }
+//       res.send(countdownItems)
+//     })
+// })
+
 router.post('/', function (req, res) {
   const shopListObj = req.body
   const shopListArr = Object.values(shopListObj)[0]
-  knex('countdown')
-    .whereIn('product', shopListArr)
-    .then(function (countdown) {
-      const countdownItems = { shopping: countdown }
-      res.send(countdownItems)
+  knex('new-world')
+    .join('countdown', 'new-world.id', 'countdown.id')
+    .select('countdown.product as product', 'countdown.price as cdPrice', 'new-world.price as nwPrice')
+    .whereIn('countdown.product', shopListArr)
+    .then(function (newWorld) {
+      console.log(newWorld)
+      const newWorldItems = { shopping: newWorld }
+      res.send(newWorldItems)
     })
 })
-
 
 
 module.exports = router

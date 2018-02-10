@@ -19901,7 +19901,8 @@ var Compare = function (_React$Component) {
           null,
           'The Compare is here'
         ),
-        _react2.default.createElement(_Countdown2.default, { shoppingList: other })
+        _react2.default.createElement(_Countdown2.default, { shoppingList: other }),
+        _react2.default.createElement(_NewWorld2.default, { shoppingList: other })
       );
     }
   }]);
@@ -20000,7 +20001,7 @@ var Countdown = function (_React$Component) {
     value: function total() {
       var count = 0;
       for (var i = 0; i < this.state.countdown.length; i++) {
-        count += this.state.countdown[i].price;
+        count += this.state.countdown[i].cdPrice;
       }
       console.log(count);
       this.setState({
@@ -20027,7 +20028,7 @@ var Countdown = function (_React$Component) {
               null,
               item.product,
               ' $',
-              item.price
+              item.cdPrice
             )
           );
         }),
@@ -22121,65 +22122,105 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var NewWorld = function (_React$Component) {
   _inherits(NewWorld, _React$Component);
 
-  function NewWorld() {
+  function NewWorld(props) {
     _classCallCheck(this, NewWorld);
 
-    var _this = _possibleConstructorReturn(this, (NewWorld.__proto__ || Object.getPrototypeOf(NewWorld)).call(this));
+    var _this = _possibleConstructorReturn(this, (NewWorld.__proto__ || Object.getPrototypeOf(NewWorld)).call(this, props));
 
     _this.state = {
-      widgets: [{ name: 'test' }]
+      total: 0,
+      newWorld: [{ name: 'test' }]
     };
-
-    _this.getWorld = _this.getWorld.bind(_this);
-    _this.renderWidgets = _this.renderWidgets.bind(_this);
+    _this.handlePress = _this.handlePress.bind(_this);
+    _this.renderList = _this.renderList.bind(_this);
+    _this.total = _this.total.bind(_this);
+    // this.getCountdown = this.getCountdown.bind(this)
+    // this.renderWidgets = this.renderWidgets.bind(this)
     return _this;
   }
+
+  // componentDidMount () {
+  //   this.getCountdown()
+  // }
+  //
+  // renderWidgets (err, widgets) {
+  //   this.setState({
+  //     error: err,
+  //     widgets: widgets || []
+  //   })
+  // }
+  //
+  // getCountdown (err) {
+  //   this.setState({
+  //     error: err
+  //   })
+  //   getWidgets(this.renderWidgets)
+  // }
+
 
   _createClass(NewWorld, [{
     key: 'componentDidMount',
     value: function componentDidMount() {
-      this.getWorld();
+      this.handlePress(this.props);
     }
   }, {
-    key: 'renderWidgets',
-    value: function renderWidgets(err, widgets) {
-      this.setState({
-        error: err,
-        widgets: widgets || []
-      });
+    key: 'handlePress',
+    value: function handlePress(list) {
+      (0, _api.postList)(list, this.renderList);
     }
   }, {
-    key: 'getWorld',
-    value: function getWorld(err) {
+    key: 'renderList',
+    value: function renderList(newWorldItems) {
       this.setState({
-        error: err
+        newWorld: newWorldItems.body.shopping || {}
       });
-      (0, _api.getWidgets)(this.renderWidgets);
+      this.total();
+    }
+  }, {
+    key: 'total',
+    value: function total() {
+      var count = 0;
+      for (var i = 0; i < this.state.newWorld.length; i++) {
+        count += this.state.newWorld[i].nwPrice;
+      }
+      console.log(count);
+      this.setState({
+        total: count
+      });
     }
   }, {
     key: 'render',
     value: function render() {
-      var _this2 = this;
-
       return _react2.default.createElement(
         'div',
         null,
         _react2.default.createElement(
           'h1',
           null,
-          'The New World is here'
+          'The newWorld is here'
         ),
-        this.state.widgets.map(function (widget) {
-          return _this2.props.shoppingList.itemTwo === widget.name && _react2.default.createElement(
-            'p',
-            { key: widget.id },
-            widget.name
+        this.state.newWorld.map(function (item, id) {
+          return _react2.default.createElement(
+            'div',
+            { key: id },
+            _react2.default.createElement(
+              'p',
+              null,
+              item.product,
+              ' $',
+              item.nwPrice
+            )
           );
         }),
         _react2.default.createElement(
           'p',
           null,
-          this.props.shoppingList.itemOne
+          _react2.default.createElement(
+            'strong',
+            null,
+            'Total: $',
+            this.state.total
+          )
         )
       );
     }
@@ -22211,8 +22252,6 @@ var _reactRouterDom = __webpack_require__(29);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -22230,16 +22269,10 @@ var List = function (_React$Component) {
     _this.state = {
       test: 'test'
     };
-    _this.addItem = _this.addItem.bind(_this);
     return _this;
   }
 
   _createClass(List, [{
-    key: 'addItem',
-    value: function addItem(evt) {
-      this.setState(_defineProperty({}, evt.target.name, evt.target.value));
-    }
-  }, {
     key: 'render',
     value: function render() {
       return _react2.default.createElement(

@@ -7,16 +7,7 @@ class List extends React.Component {
     this.state = {
       test: 'test'
     }
-    this.addItem = this.addItem.bind(this)
   }
-
-  addItem (evt) {
-    this.setState({
-      [evt.target.name]: evt.target.value
-    })
-  }
-
-
 
   render () {
     return (
