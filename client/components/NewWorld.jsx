@@ -1,46 +1,81 @@
 import React from 'react'
-import {getWidgets} from '../api'
+import {postList} from '../api'
+
 
 class NewWorld extends React.Component {
-  constructor () {
-    super()
+  constructor (props) {
+    super(props)
     this.state = {
-      widgets: [{name: 'test'}]
+      total: 0,
+    newWorld: [{name: 'test'}]
     }
-
-    this.getWorld = this.getWorld.bind(this)
-    this.renderWidgets = this.renderWidgets.bind(this)
+    this.handlePress = this.handlePress.bind(this)
+    this.renderList = this.renderList.bind(this)
+    this.total = this.total.bind(this)
+    // this.getCountdown = this.getCountdown.bind(this)
+    // this.renderWidgets = this.renderWidgets.bind(this)
   }
 
-  componentDidMount () {
-    this.getWorld()
+  // componentDidMount () {
+  //   this.getCountdown()
+  // }
+  //
+  // renderWidgets (err, widgets) {
+  //   this.setState({
+  //     error: err,
+  //     widgets: widgets || []
+  //   })
+  // }
+  //
+  // getCountdown (err) {
+  //   this.setState({
+  //     error: err
+  //   })
+  //   getWidgets(this.renderWidgets)
+  // }
+
+
+
+  componentDidMount() {
+   this.handlePress(this.props)
   }
 
-  renderWidgets (err, widgets) {
+  handlePress (list) {
+    postList(list, this.renderList)
+  }
+
+  renderList (newWorldItems) {
     this.setState({
-      error: err,
-      widgets: widgets || []
+    newWorld: newWorldItems.body.shopping || {},
+    })
+    this.total()
+  }
+
+  total () {
+    let count = 0
+    for(let i = 0; i< this.state.newWorld.length; i++) {
+      count += this.state.newWorld[i].nwPrice
+    }
+    console.log(count)
+    this.setState({
+      total: count
     })
   }
 
-  getWorld (err) {
-    this.setState({
-      error: err
-    })
-    getWidgets(this.renderWidgets)
-  }
 
   render () {
     return (
       <div>
-        <h1>The New World is here</h1>
-        {this.state.widgets.map(widget => {
+        <h1>The newWorld is here</h1>
+        {this.state.newWorld.map((item, id) => {
           return (
-            this.props.shoppingList.itemTwo === widget.name &&
-        <p key={widget.id}>{widget.name}</p>
+            <div key={id}>
+            <p>{item.product} ${item.nwPrice}</p>
+          </div>
           )
         })}
-        <p>{this.props.shoppingList.itemOne}</p>
+        <p><strong>Total: ${this.state.total}</strong></p>
+
       </div>
     )
   }

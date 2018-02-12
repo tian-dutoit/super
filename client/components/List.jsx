@@ -7,13 +7,6 @@ class List extends React.Component {
     this.state = {
       test: 'test'
     }
-    this.addItem = this.addItem.bind(this)
-  }
-
-  addItem (evt) {
-    this.setState({
-      [evt.target.name]: evt.target.value
-    })
   }
 
   render () {
@@ -25,7 +18,8 @@ class List extends React.Component {
           <input name="itemThree" onChange={this.props.addItem} /> <br/>
           <input name="itemFour" onChange={this.props.addItem} /> <br/>
           <input name="itemFive" onChange={this.props.addItem} /> <br/>
-          <Link to='/compare'> <input type = "button" value="Press Me"/></Link>
+          <button type = "button" onClick={this.props.handlePress}>Submit data</button>
+          <Link to='/compare'> <input type = "button" value="Press me"/></Link>
         </form>
       </div>
     )

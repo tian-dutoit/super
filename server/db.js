@@ -1,3 +1,5 @@
+
+
 const widgets = [{
   id: 1,
   name: 'Red widget',
@@ -26,5 +28,3 @@ function pleaseWork () {
   return 5
 }
 module.exports = {getWidgets, pleaseWork}
-
-
