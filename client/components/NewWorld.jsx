@@ -46,7 +46,7 @@ class NewWorld extends React.Component {
 
   renderList (newWorldItems) {
     this.setState({
-    newWorld: newWorldItems.body.shopping || {},
+    newWorld: newWorldItems.body.newW || {}
     })
     this.total()
   }
@@ -54,9 +54,8 @@ class NewWorld extends React.Component {
   total () {
     let count = 0
     for(let i = 0; i< this.state.newWorld.length; i++) {
-      count += this.state.newWorld[i].nwPrice
+      count += this.state.newWorld[i].price
     }
-    console.log(count)
     this.setState({
       total: count
     })
@@ -70,7 +69,7 @@ class NewWorld extends React.Component {
         {this.state.newWorld.map((item, id) => {
           return (
             <div key={id}>
-            <p>{item.product} ${item.nwPrice}</p>
+            <p>{item.product} ${item.price}</p>
           </div>
           )
         })}
