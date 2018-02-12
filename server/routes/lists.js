@@ -11,6 +11,8 @@ router.get('/', function (req, res) {
   res.send(dataArr)
 })
 
+
+// call to one db only
 // router.post('/', function (req, res) {
 //   const shopListObj = req.body
 //   const shopListArr = Object.values(shopListObj)[0]
@@ -22,24 +24,38 @@ router.get('/', function (req, res) {
 //     })
 // })
 
+
+//call to both dbs joined
+// router.post('/', function (req, res) {
+//   const shopListObj = req.body.shoppingList
+//   const shopListArr = Object.values(shopListObj)
+//   knex('new-world')
+//     .join('countdown', 'new-world.id', 'countdown.id')
+//     .select('countdown.product as product', 'countdown.price as cdPrice', 'new-world.price as nwPrice')
+//     .whereIn('countdown.product', shopListArr)
+//     .then(function (newWorld) {
+//       console.log(newWorld)
+//       const newWorldItems = { shopping: newWorld }
+//       res.send(newWorldItems)
+//     })
+// })
+
 router.post('/', function (req, res) {
   const shopListObj = req.body.shoppingList
   const shopListArr = Object.values(shopListObj)
-  console.log(shopListObj);
-  // console.log(shopListArr)
-  //if I am using this.props in the compare component
+     var down = {}
+      knex("countdown").whereIn('product', shopListArr).select().then(function(ret){
+       down=ret
+       //console.log(down.whereIn('product, shopListArr'))
+       return knex("new-world").whereIn('product', shopListArr).select()
+     }).then(function(newWorld){
+       res.send({
+         countD: down,
+         newW: newWorld
+       })
+     })
+   })
 
-
-  knex('new-world')
-    .join('countdown', 'new-world.id', 'countdown.id')
-    .select('countdown.product as product', 'countdown.price as cdPrice', 'new-world.price as nwPrice')
-    .whereIn('countdown.product', shopListArr)
-    .then(function (newWorld) {
-      console.log(newWorld)
-      const newWorldItems = { shopping: newWorld }
-      res.send(newWorldItems)
-    })
-})
 
 
 module.exports = router

@@ -37,7 +37,6 @@ class Countdown extends React.Component {
 
 
  componentDidMount() {
-   console.log(this.props)
    this.handlePress(this.props)
  }
 
@@ -47,7 +46,7 @@ class Countdown extends React.Component {
 
   renderList (countdownItems) {
     this.setState({
-    countdown: countdownItems.body.shopping || {},
+    countdown: countdownItems.body.countD || {}
     })
     this.total()
   }
@@ -55,9 +54,8 @@ class Countdown extends React.Component {
   total () {
     let count = 0
     for(let i = 0; i< this.state.countdown.length; i++) {
-      count += this.state.countdown[i].cdPrice
+      count += this.state.countdown[i].price
     }
-    console.log(count)
     this.setState({
       total: count
     })
@@ -71,7 +69,7 @@ class Countdown extends React.Component {
         {this.state.countdown.map((item, id) => {
           return (
             <div key={id}>
-            <p>{item.product} ${item.cdPrice}</p>
+            <p>{item.product} ${item.price}</p>
           </div>
           )
         })}
