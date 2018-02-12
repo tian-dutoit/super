@@ -19901,8 +19901,8 @@ var Compare = function (_React$Component) {
           null,
           'The Compare is here'
         ),
-        _react2.default.createElement(_Countdown2.default, { shoppingList: other }),
-        _react2.default.createElement(_NewWorld2.default, { shoppingList: other })
+        _react2.default.createElement(_Countdown2.default, { shoppingList: this.props.shoppingList }),
+        _react2.default.createElement(_NewWorld2.default, { shoppingList: this.props.shoppingList })
       );
     }
   }]);
@@ -19981,6 +19981,7 @@ var Countdown = function (_React$Component) {
   _createClass(Countdown, [{
     key: 'componentDidMount',
     value: function componentDidMount() {
+      console.log(this.props);
       this.handlePress(this.props);
     }
   }, {

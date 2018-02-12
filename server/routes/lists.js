@@ -8,7 +8,6 @@ var knex = require('knex')(development)
 router.get('/', function (req, res) {
   const bodyData = res.body
   const dataArr = db.getWidgets()
-  console.log(bodyData)
   res.send(dataArr)
 })
 
@@ -24,8 +23,13 @@ router.get('/', function (req, res) {
 // })
 
 router.post('/', function (req, res) {
-  const shopListObj = req.body
-  const shopListArr = Object.values(shopListObj)[0]
+  const shopListObj = req.body.shoppingList
+  const shopListArr = Object.values(shopListObj)
+  console.log(shopListObj);
+  // console.log(shopListArr)
+  //if I am using this.props in the compare component
+
+
   knex('new-world')
     .join('countdown', 'new-world.id', 'countdown.id')
     .select('countdown.product as product', 'countdown.price as cdPrice', 'new-world.price as nwPrice')

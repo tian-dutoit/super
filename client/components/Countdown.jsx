@@ -37,6 +37,7 @@ class Countdown extends React.Component {
 
 
  componentDidMount() {
+   console.log(this.props)
    this.handlePress(this.props)
  }
 

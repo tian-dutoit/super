@@ -17,8 +17,10 @@ class Compare extends React.Component {
     return (
       <div>
         <h1>The Compare is here</h1>
-        <Countdown shoppingList={other}/>
-        <NewWorld shoppingList={other}/>
+        {/* <Countdown shoppingList={other}/>
+        <NewWorld shoppingList={other}/> */}
+        <Countdown shoppingList={this.props.shoppingList}/>
+        <NewWorld shoppingList={this.props.shoppingList}/>
       </div>
     )
   }
