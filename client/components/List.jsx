@@ -11,15 +11,14 @@ class List extends React.Component {
 
   render () {
     return (
-      <div>
+      <div className="list">
         <form>
           <input name="itemOne" onChange={this.props.addItem}/> <br/>
           <input name="itemTwo" onChange={this.props.addItem} /> <br/>
           <input name="itemThree" onChange={this.props.addItem} /> <br/>
           <input name="itemFour" onChange={this.props.addItem} /> <br/>
           <input name="itemFive" onChange={this.props.addItem} /> <br/>
-          <button type = "button" onClick={this.props.handlePress}>Submit data</button>
-          <Link to='/compare'> <input type = "button" value="Press me"/></Link>
+          <Link to='/compare'> <input type = "button" value="Press me" onClick={this.props.handlePress}/></Link>
         </form>
       </div>
     )

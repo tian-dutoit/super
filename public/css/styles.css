@@ -1,0 +1,28 @@
+body {
+  background-color: aquamarine;
+  
+}
+
+#app {
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.app {
+  background-color: green;
+}
+
+.list {
+  background-color: blue;
+}
+
+.countdown {
+  background-color: red;
+}
+
+.world {
+  background-color:yellow;
+}
