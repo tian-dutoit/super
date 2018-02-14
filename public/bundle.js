@@ -19809,7 +19809,7 @@ var App = function (_React$Component) {
           _react2.default.createElement(
             'h1',
             null,
-            'The app is here'
+            'Supa'
           ),
           _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', render: function render() {
               return _react2.default.createElement(_List2.default, { addItem: _this2.addItem, handlePress: _this2.handlePress });
@@ -19979,7 +19979,7 @@ var Countdown = function (_React$Component) {
         _react2.default.createElement(
           'h1',
           null,
-          'The countdown is here'
+          'Countdown'
         ),
         this.state.countdown.map(function (item, id) {
           return _react2.default.createElement(
@@ -22137,7 +22137,7 @@ var NewWorld = function (_React$Component) {
         _react2.default.createElement(
           'h1',
           null,
-          'The newWorld is here'
+          'New World'
         ),
         this.state.newWorld.map(function (item, id) {
           return _react2.default.createElement(

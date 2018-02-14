@@ -41,7 +41,7 @@ class Countdown extends React.Component {
   render () {
     return (
       <div className="countdown">
-        <h1>The countdown is here</h1>
+        <h1>Countdown</h1>
         {this.state.countdown.map((item, id) => {
           return (
             <div key={id}>

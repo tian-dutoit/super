@@ -11,7 +11,6 @@ router.get('/', function (req, res) {
   res.send(dataArr)
 })
 
-
 // call to one db only
 // router.post('/', function (req, res) {
 //   const shopListObj = req.body
@@ -24,8 +23,7 @@ router.get('/', function (req, res) {
 //     })
 // })
 
-
-//call to both dbs joined
+// call to both dbs joined
 // router.post('/', function (req, res) {
 //   const shopListObj = req.body.shoppingList
 //   const shopListArr = Object.values(shopListObj)
@@ -43,19 +41,16 @@ router.get('/', function (req, res) {
 router.post('/', function (req, res) {
   const shopListObj = req.body.shoppingList
   const shopListArr = Object.values(shopListObj)
-     var down = {}
-      knex("countdown").whereIn('product', shopListArr).select().then(function(ret){
-       down=ret
-       //console.log(down.whereIn('product, shopListArr'))
-       return knex("new-world").whereIn('product', shopListArr).select()
-     }).then(function(newWorld){
-       res.send({
-         countD: down,
-         newW: newWorld
-       })
-     })
-   })
-
-
+  var down = {}
+  knex('countdown').whereIn('product', shopListArr).select().then(function (ret) {
+    down = ret
+    return knex('new-world').whereIn('product', shopListArr).select()
+  }).then(function (newWorld) {
+    res.send({
+      countD: down,
+      newW: newWorld
+    })
+  })
+})
 
 module.exports = router

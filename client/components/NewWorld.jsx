@@ -41,7 +41,7 @@ class NewWorld extends React.Component {
   render () {
     return (
       <div className="world">
-        <h1>The newWorld is here</h1>
+        <h1>New World</h1>
         {this.state.newWorld.map((item, id) => {
           return (
             <div key={id}>

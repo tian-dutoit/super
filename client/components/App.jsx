@@ -19,7 +19,7 @@ class App extends React.Component {
     return (
       <Router>
         <div className="app">
-          <h1>The app is here</h1>
+          <h1>Supa</h1>
           <Route exact path='/' render={() => <List addItem={this.addItem} handlePress={this.handlePress} />} />
           <Route path='/compare' render={() => <Compare shoppingList={this.state}/> }/>
         </div>
