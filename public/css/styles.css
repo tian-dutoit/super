@@ -1,6 +1,5 @@
 body {
-  background-color: aquamarine;
-  
+  background: url('http://ivesy.com/ears/wp-content/uploads/supermarket-trolley-1.png') no-repeat center fixed;
 }
 
 #app {
@@ -12,7 +11,7 @@ body {
 }
 
 .app {
-  background-color: green;
+  background-color: lawngreen;
 }
 
 .list {
@@ -20,9 +19,14 @@ body {
 }
 
 .countdown {
-  background-color: red;
+  background-image: url('http://logok.org/wp-content/uploads/2014/12/Woolworths-logo.png');
+  background-size: contain;
+  background-position: center;
+  
 }
 
 .world {
-  background-color:yellow;
+  background-image: url('http://www.sandersdesign.co.nz/images/new-world-logo-brand-word-mark.jpg');
+  background-size: contain;
+
 }
