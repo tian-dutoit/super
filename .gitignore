@@ -1,7 +1,0 @@
-node_modules
-static
-npm-debug.log
-bundle.*
-public/bundle.js
-public/bundle.js.map
-
