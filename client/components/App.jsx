@@ -22,7 +22,6 @@ class App extends React.Component {
         <div className="app">
           <h1>Supa</h1>
           <Route exact path='/' render={() => <List addItem={this.addItem}/>} />
-          {/* <Route path='/compare' render={() => <Compare shoppingList={this.state}/> }/> */}
           <Route path='/compare' render={() => <Countdown shoppingList={this.state}/> }/>
           <Route path='/compare' render={() => <NewWorld shoppingList={this.state}/> }/>
         </div>
