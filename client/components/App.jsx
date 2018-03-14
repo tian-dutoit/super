@@ -1,5 +1,6 @@
 import React from 'react'
-import Compare from './Compare'
+import Countdown from './Countdown'
+import NewWorld from './NewWorld'
 import List from './List'
 import {HashRouter as Router, Route} from 'react-router-dom'
 
@@ -19,9 +20,10 @@ class App extends React.Component {
     return (
       <Router>
         <div className="app">
-          <h1>Supa</h1>
-          <Route exact path='/' render={() => <List addItem={this.addItem} handlePress={this.handlePress} />} />
-          <Route path='/compare' render={() => <Compare shoppingList={this.state}/> }/>
+          <h1>Super</h1>
+          <Route exact path='/' render={() => <List addItem={this.addItem}/>} />
+          <Route path='/compare' render={() => <Countdown shoppingList={this.state}/> }/>
+          <Route path='/compare' render={() => <NewWorld shoppingList={this.state}/> }/>
         </div>
       </Router>
     )

@@ -6,19 +6,15 @@ class Countdown extends React.Component {
     super(props)
     this.state = {
       total: 0,
-      countdown: [{name: 'test'}]
+      countdown: [{name: 'initial'}]
     }
-    this.handlePress = this.handlePress.bind(this)
     this.renderList = this.renderList.bind(this)
     this.total = this.total.bind(this)
   }
 
   componentDidMount () {
-    this.handlePress(this.props)
-  }
+    postList(this.props, this.renderList)
 
-  handlePress (list) {
-    postList(list, this.renderList)
   }
 
   renderList (countdownItems) {
@@ -41,10 +37,11 @@ class Countdown extends React.Component {
   render () {
     return (
       <div className="countdown">
-        <h1>Countdown</h1>
-        {this.state.countdown.map((item, id) => {
+        <div className="countdownImage">
+        </div>
+        {this.state.countdown.map((item) => {
           return (
-            <div key={id}>
+            <div key={item.id}>
               <p>{item.product} ${item.price}</p>
             </div>
           )

@@ -6,19 +6,14 @@ class NewWorld extends React.Component {
     super(props)
     this.state = {
       total: 0,
-      newWorld: [{name: 'test'}]
+      newWorld: [{name: 'initial'}]
     }
-    this.handlePress = this.handlePress.bind(this)
     this.renderList = this.renderList.bind(this)
     this.total = this.total.bind(this)
   }
 
   componentDidMount () {
-    this.handlePress(this.props)
-  }
-
-  handlePress (list) {
-    postList(list, this.renderList)
+    postList(this.props, this.renderList)
   }
 
   renderList (newWorldItems) {
@@ -41,10 +36,12 @@ class NewWorld extends React.Component {
   render () {
     return (
       <div className="world">
-        <h1>New World</h1>
-        {this.state.newWorld.map((item, id) => {
+        <div className="worldImage">
+          <p></p>
+        </div>
+        {this.state.newWorld.map((item) => {
           return (
-            <div key={id}>
+            <div key={item.id}>
               <p>{item.product} ${item.price}</p>
             </div>
           )
