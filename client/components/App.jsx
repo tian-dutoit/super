@@ -20,7 +20,7 @@ class App extends React.Component {
     return (
       <Router>
         <div className="app">
-          <h1>Supa</h1>
+          <h1>Super</h1>
           <Route exact path='/' render={() => <List addItem={this.addItem}/>} />
           <Route path='/compare' render={() => <Countdown shoppingList={this.state}/> }/>
           <Route path='/compare' render={() => <NewWorld shoppingList={this.state}/> }/>

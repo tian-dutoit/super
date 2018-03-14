@@ -1,5 +1,6 @@
 body {
-  background: url('http://ivesy.com/ears/wp-content/uploads/supermarket-trolley-1.png') no-repeat center fixed;
+  /* background: url('http://ivesy.com/ears/wp-content/uploads/supermarket-trolley-1.png') no-repeat center fixed; */
+  background-color: gray;
 }
 
 #app {
@@ -11,22 +12,28 @@ body {
 }
 
 .app {
-  background-color: lawngreen;
+  background-color: gray;
+  border: 2px solid black;
+  margin: 20%;
+  padding: 5em;
 }
 
 .list {
-  background-color: blue;
+  background-color: gray;
 }
 
-.countdown {
+.countdownImage {
   background-image: url('http://logok.org/wp-content/uploads/2014/12/Woolworths-logo.png');
+  opacity: 0.5;
   background-size: contain;
   background-position: center;
-  
+  height: 5em;
 }
 
-.world {
+.worldImage {
   background-image: url('http://www.sandersdesign.co.nz/images/new-world-logo-brand-word-mark.jpg');
+  opacity: 0.5;
+  height: 5em;
   background-size: contain;
 
 }

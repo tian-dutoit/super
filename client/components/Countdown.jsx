@@ -37,7 +37,8 @@ class Countdown extends React.Component {
   render () {
     return (
       <div className="countdown">
-        <h1>Countdown</h1>
+        <div className="countdownImage">
+        </div>
         {this.state.countdown.map((item) => {
           return (
             <div key={item.id}>
