@@ -5,7 +5,7 @@ class List extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      test: 'test'
+      initial: ''
     }
   }
 
@@ -18,7 +18,7 @@ class List extends React.Component {
           <input name="itemThree" onChange={this.props.addItem} /> <br/>
           <input name="itemFour" onChange={this.props.addItem} /> <br/>
           <input name="itemFive" onChange={this.props.addItem} /> <br/>
-          <Link to='/compare'> <input type = "button" value="Press me" onClick={this.props.handlePress}/></Link>
+          <Link to='/compare'> <input type = "button" value="Confirm"/></Link>
         </form>
       </div>
     )

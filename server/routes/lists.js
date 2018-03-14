@@ -5,11 +5,11 @@ const db = require('../db')
 var development = require('../../knexfile').development
 var knex = require('knex')(development)
 
-router.get('/', function (req, res) {
-  const bodyData = res.body
-  const dataArr = db.getWidgets()
-  res.send(dataArr)
-})
+// router.get('/', function (req, res) {
+//   const bodyData = res.body
+//   const dataArr = db.getWidgets()
+//   res.send(dataArr)
+// })
 
 // call to one db only
 // router.post('/', function (req, res) {
